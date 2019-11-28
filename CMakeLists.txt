@@ -9,6 +9,8 @@ set(SOURCE_FILES
     "adjlistnondirgraph.h"
     "adjlistnondirgraph.cpp"
     "queue.h"
+    "map.h"
+    "map.cpp"
     "vector2.h"
     "vector2.cpp"
     )
