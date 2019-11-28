@@ -20,8 +20,8 @@ struct Vector2
 
     // --- Overloaded operators
 
-    Vector2 &&operator+ (const Vector2 &l_rhs);
-    Vector2 &&operator- (const Vector2 &l_rhs);
+    Vector2 operator+ (const Vector2 &l_rhs);
+    Vector2 operator- (const Vector2 &l_rhs);
     Vector2 &operator+= (const Vector2 &l_rhs);
     bool operator== (const Vector2 &l_rhs) const;
 
