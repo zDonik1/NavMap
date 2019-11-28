@@ -53,7 +53,7 @@ void printCharMap(const CharMap &l_char_map)
 void handleIO(const Map &map)
 {
     while (true) {
-        system("cls");
+        clearScreen();
         printCharMap(map.getCharMap());
         std::cout << std::endl;
 
