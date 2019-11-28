@@ -4,7 +4,7 @@ project(NavMap)
 
 set(SOURCE_FILES
     "main.cpp"
-    "singlelist.h"
+    "circsinglelist.h"
     "stack.h"
     "adjlistnondirgraph.h"
     )

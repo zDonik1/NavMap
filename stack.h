@@ -1,9 +1,9 @@
 #pragma once
 
-#include "singlelist.h"
+#include "circsinglelist.h"
 
 
-// Wrapper for SingleList
+// Wrapper for CircSingleList
 template<typename T>
 class Stack
 {
@@ -11,7 +11,7 @@ private:
 
     // --- Member variables
 
-    SingleList<T> list;
+    CircSingleList<T> m_list;
 
 
 public:
@@ -20,22 +20,22 @@ public:
 
     void push(const T &l_value)
     {
-        list.push_front(l_value);
+        m_list.push_front(l_value);
     }
 
     bool pop()
     {
-        return list.pop_front();
+        return m_list.pop_front();
     }
 
     T &top()
     {
-        return *list.begin();
+        return *m_list.begin();
     }
 
     bool empty()
     {
-        return list.empty();
+        return m_list.empty();
     }
 
 };
