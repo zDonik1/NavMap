@@ -3,6 +3,27 @@
 #include "stack.h"
 #include "map.h"
 
+#ifdef __unix__
+
+#define OS_Windows 0
+
+#elif defined(_WIN32) || defined(WIN32)
+
+#define OS_Windows 1
+
+#endif
+
+
+void clearScreen()
+{
+    if (OS_Windows) {
+        system("cls");
+    }
+    else {
+        std::cout << "\033[2J\033[1;1H";
+    }
+}
+
 void printPath(Stack<int> l_path)
 {
     if (l_path.empty()) {
@@ -50,7 +71,7 @@ void handleIO(const Map &map)
         printCharMap(map.getCharMapWithPath(in_ch1, in_ch2));
         std::cout << std::endl;
 
-        system("pause");
+        clearScreen();
     }
 }
 
