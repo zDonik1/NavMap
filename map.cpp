@@ -57,6 +57,9 @@ bool Map::loadCharMap(std::istream &stream)
 {
     std::string line;
     while (std::getline(stream, line)) {
+        // This is to trim trailing \r character
+        line.erase(std::remove(line.begin(), line.end(), '\r'), line.end());
+
         if (!m_char_map.size()) {
             for (size_t i = 0; i < line.size(); ++i) {
                 m_char_map.push_back(std::vector<char>());
