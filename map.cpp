@@ -172,7 +172,10 @@ void Map::moveRunner(Vector2 &l_runner, const PosDir &l_pos_dir, Queue<PosDir> &
             runner_char = m_mark_char;
         }
 
-        if (road_dirs.size() == 1 && road_dirs.back() == l_pos_dir.second) {
+        if (road_dirs.size() == 1
+            && road_dirs.back() == l_pos_dir.second
+            && !isNode(l_runner))
+        {
             l_runner += l_pos_dir.second;
         }
         else {
@@ -198,14 +201,6 @@ void Map::handleBFSQueue(Queue<PosDir> &l_bfs_queue, CharMap &l_char_map,
         l_bfs_queue.pop();
 
         Vector2 runner = pos_dir.first + pos_dir.second;
-        char temp_runner_char = l_char_map
-                                    .at(static_cast<size_t>(runner.x))
-                                    .at(static_cast<size_t>(runner.y));
-        if (isOutOfBounds(l_char_map, runner)
-            || temp_runner_char == m_mark_char)
-        {
-            continue;
-        }
 
         l_roads.push_back({pos_dir.first, Vector2(0, 0)});
 
