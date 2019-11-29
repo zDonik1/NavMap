@@ -12,14 +12,14 @@ Vector2::Vector2(int l_x, int l_y)
 {
 }
 
-Vector2 &&Vector2::operator+(const Vector2 &l_rhs)
+Vector2 Vector2::operator+(const Vector2 &l_rhs)
 {
-    return std::move(Vector2(x + l_rhs.x, y + l_rhs.y));
+    return Vector2(x + l_rhs.x, y + l_rhs.y);
 }
 
-Vector2 &&Vector2::operator-(const Vector2 &l_rhs)
+Vector2 Vector2::operator-(const Vector2 &l_rhs)
 {
-    return std::move(Vector2(x - l_rhs.x, y - l_rhs.y));
+    return Vector2(x - l_rhs.x, y - l_rhs.y);
 }
 
 Vector2 &Vector2::operator+=(const Vector2 &l_rhs)

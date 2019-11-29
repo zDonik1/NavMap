@@ -1,5 +1,5 @@
 #include "adjlistnondirgraph.h"
-
+#include <climits>
 
 // --- Helper methods
 
