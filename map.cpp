@@ -144,12 +144,12 @@ void Map::checkAdjacentRoad(std::vector<Vector2> &l_road_dirs, const PosDir &l_p
             continue;
         }
 
-        if (check_char == m_correct_road && !isNode(check_road)) {
+        if (check_char == m_mark_char && !isNode(check_road)) {
             continue;
         }
 
         if (check_char == m_road_char
-            || check_char == m_correct_road
+            || check_char == m_mark_char
             || isEndpointChar(check_char))
         {
             l_road_dirs.push_back(dir);
@@ -168,7 +168,7 @@ void Map::moveRunner(Vector2 &l_runner, const PosDir &l_pos_dir, Queue<PosDir> &
                                 .at(static_cast<size_t>(l_runner.x))
                                 .at(static_cast<size_t>(l_runner.y));
         if (!isEndpointChar(runner_char)) {
-            runner_char = m_correct_road;
+            runner_char = m_mark_char;
         }
 
         if (road_dirs.size() == 1 && road_dirs.back() == l_pos_dir.second) {
@@ -201,7 +201,7 @@ void Map::handleBFSQueue(Queue<PosDir> &l_bfs_queue, CharMap &l_char_map,
                                     .at(static_cast<size_t>(runner.x))
                                     .at(static_cast<size_t>(runner.y));
         if (isOutOfBounds(l_char_map, runner)
-            || temp_runner_char == m_correct_road)
+            || temp_runner_char == m_mark_char)
         {
             continue;
         }

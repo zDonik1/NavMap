@@ -53,6 +53,7 @@ private:
     char m_road_char = '\0';
     char m_correct_road = '\0';
     char m_endp_char = '\0';
+    char m_mark_char = '!';
 
 
     // --- Helper methods
