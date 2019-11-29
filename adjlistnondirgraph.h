@@ -39,6 +39,7 @@ public:
 
     AdjListNonDirGraph() = default;
     AdjListNonDirGraph(const AdjListNonDirGraph &) = delete;
+    AdjListNonDirGraph(AdjListNonDirGraph &&) = default;
 
 
     // --- Member functions

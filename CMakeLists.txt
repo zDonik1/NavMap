@@ -13,6 +13,8 @@ set(SOURCE_FILES
     "map.cpp"
     "vector2.h"
     "vector2.cpp"
+    "io.h"
+    "io.cpp"
     )
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
