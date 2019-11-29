@@ -123,10 +123,18 @@ CharDataSet loadCharConfig()
     while (std::getline(ifs_char, line)) {
         std::stringstream sstream(line);
         std::string key;
-        char ch;
+        std::string ch_str;
         std::string txt_colour;
         std::string bg_colour;
-        sstream >> key >> ch >> txt_colour >> bg_colour;
+        sstream >> key >> ch_str >> txt_colour >> bg_colour;
+
+        char ch;
+        if (ch_str.at(0) == '\'') {
+            ch = ch_str.at(1);
+        }
+        else {
+            ch = static_cast<char>(std::stoi(ch_str));
+        }
 
         characters[key] = {ch, txt_colour, bg_colour};
     }
