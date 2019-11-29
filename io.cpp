@@ -48,7 +48,7 @@ void printCharMap(const CharMap &l_char_map, const std::map<std::string, unsigne
                 SetConsoleTextAttribute(hConsole, colour);
             }
 
-            std::cout << ch;
+            std::cout << ch << ' ';
         }
 
         std::cout << std::endl;
