@@ -95,6 +95,12 @@ private:
 
 public:
 
+    // --- C/D-tors
+
+    Map() = default;
+    Map(Map &&l_map) = default;
+
+
     // --- Member functions
 
     const CharMap &getCharMap() const;
