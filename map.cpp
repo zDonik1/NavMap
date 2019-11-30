@@ -63,7 +63,7 @@ bool Map::loadCharMap(std::istream &stream)
 
         if (!m_char_map.size()) {
             for (size_t i = 0; i < line.size(); ++i) {
-                m_char_map.push_back(std::vector<char>());
+                m_char_map.push_back(DynArray<char>());
             }
         }
         else if (line.size() != m_char_map.size()) {
@@ -71,7 +71,7 @@ bool Map::loadCharMap(std::istream &stream)
         }
 
         for (size_t i = 0; i < m_char_map.size(); ++i) {
-            m_char_map.at(i).insert(m_char_map.at(i).begin(), line.at(i));
+            m_char_map.at(i).push_front(line.at(i));
         }
     }
 
@@ -104,9 +104,9 @@ void Map::labelCharMap()
     }
 }
 
-std::vector<Vector2> Map::initDirections()
+DynArray<Vector2> Map::initDirections()
 {
-    std::vector<Vector2> directions(4);
+    DynArray<Vector2> directions(4);
     directions[0] = Vector2(0, 1);
     directions[1] = Vector2(1, 0);
     directions[2] = Vector2(0, -1);
@@ -114,7 +114,7 @@ std::vector<Vector2> Map::initDirections()
     return directions;
 }
 
-void Map::initBFSQueue(const std::vector<Vector2> &l_directions,
+void Map::initBFSQueue(const DynArray<Vector2> &l_directions,
                        const CharMap &l_char_map,
                        Queue<PosDir> &l_bfs_queue)
 {
@@ -130,8 +130,8 @@ void Map::initBFSQueue(const std::vector<Vector2> &l_directions,
     }
 }
 
-void Map::checkAdjacentRoad(std::vector<Vector2> &l_road_dirs, const PosDir &l_pos_dir,
-                            const std::vector<Vector2> &l_directions,
+void Map::checkAdjacentRoad(DynArray<Vector2> &l_road_dirs, const PosDir &l_pos_dir,
+                            const DynArray<Vector2> &l_directions,
                             const CharMap &l_char_map, Vector2 &l_runner)
 {
     for (const auto &dir : l_directions) {
@@ -159,10 +159,10 @@ void Map::checkAdjacentRoad(std::vector<Vector2> &l_road_dirs, const PosDir &l_p
 }
 
 void Map::moveRunner(Vector2 &l_runner, const PosDir &l_pos_dir, Queue<PosDir> &l_bfs_queue,
-                     CharMap &l_char_map, Roads &l_roads, const std::vector<Vector2> &l_directions)
+                     CharMap &l_char_map, Roads &l_roads, const DynArray<Vector2> &l_directions)
 {
     while (true) {
-        std::vector<Vector2> road_dirs;
+        DynArray<Vector2> road_dirs;
         checkAdjacentRoad(road_dirs, l_pos_dir, l_directions, l_char_map, l_runner);
 
         char &runner_char = l_char_map
@@ -194,7 +194,7 @@ void Map::moveRunner(Vector2 &l_runner, const PosDir &l_pos_dir, Queue<PosDir> &
 }
 
 void Map::handleBFSQueue(Queue<PosDir> &l_bfs_queue, CharMap &l_char_map,
-                         Roads &l_roads, const std::vector<Vector2> &l_directions)
+                         Roads &l_roads, const DynArray<Vector2> &l_directions)
 {
     while (!l_bfs_queue.empty()) {
         auto pos_dir = l_bfs_queue.top();
@@ -211,14 +211,14 @@ void Map::handleBFSQueue(Queue<PosDir> &l_bfs_queue, CharMap &l_char_map,
 Roads Map::loadRoads(const CharMap &l_char_map)
 {
     CharMap ch_map_copy = l_char_map;
-    std::vector<Vector2> directions = initDirections();
+    DynArray<Vector2> directions = initDirections();
 
     loadEndpoints(ch_map_copy);
     labelCharMap();
 
     Roads roads;
     Queue<PosDir> bfs_queue;
-    std::vector<Vector2> visited_nodes;
+    DynArray<Vector2> visited_nodes;
 
     initBFSQueue(directions, ch_map_copy, bfs_queue);
     handleBFSQueue(bfs_queue, ch_map_copy, roads, directions);

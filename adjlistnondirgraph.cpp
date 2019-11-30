@@ -3,7 +3,8 @@
 
 // --- Helper methods
 
-int AdjListNonDirGraph::findMin(std::vector<std::pair<int, int> > &l_shortest_path, std::vector<bool> &l_visited)
+int AdjListNonDirGraph::findMin(DynArray<std::pair<int, int>> &l_shortest_path,
+                                DynArray<bool> &l_visited)
 {
     int min_index = -1;
 
@@ -35,7 +36,7 @@ void AdjListNonDirGraph::findShortestPaths()
     for (size_t i = 0; i < m_vertices.size(); ++i) {
         initDistanceArray(i);
 
-        std::vector<bool> visited_vertices(m_vertices.size(), false);
+        DynArray<bool> visited_vertices(m_vertices.size(), false);
         while (true) {
             auto min_index = findMin(m_min_paths[i], visited_vertices);
             if (min_index == -1) {

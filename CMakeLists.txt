@@ -15,6 +15,7 @@ set(SOURCE_FILES
     "vector2.cpp"
     "io.h"
     "io.cpp"
+    "dynarray.h"
     )
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})

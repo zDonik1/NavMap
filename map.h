@@ -9,9 +9,9 @@
 
 // --- "using" types
 
-using CharMap = std::vector<std::vector<char>>;
+using CharMap = DynArray<DynArray<char>>;
 using Road = std::pair<Vector2, Vector2>;
-using Roads = std::vector<Road>;
+using Roads = DynArray<Road>;
 using PosDir = std::pair<Vector2, Vector2>;
 
 
@@ -48,7 +48,7 @@ private:
 
     AdjListNonDirGraph m_graph;
     CharMap m_char_map;
-    std::vector<Vertex> m_nodes;
+    DynArray<Vertex> m_nodes;
 
     char m_road_char = '\0';
     char m_correct_road = '\0';
@@ -70,20 +70,20 @@ private:
     void loadEndpoints(const CharMap &l_char_map);
     void labelCharMap();
 
-    std::vector<Vector2> initDirections();
+    DynArray<Vector2> initDirections();
 
-    void initBFSQueue(const std::vector<Vector2> &l_directions,
+    void initBFSQueue(const DynArray<Vector2> &l_directions,
                       const CharMap &l_char_map,
                       Queue<PosDir> &l_bfs_queue);
 
     void handleBFSQueue(Queue<PosDir> &l_bfs_queue, CharMap &l_char_map,
-                        Roads &l_roads, const std::vector<Vector2> &l_directions);
+                        Roads &l_roads, const DynArray<Vector2> &l_directions);
 
     void moveRunner(Vector2 &l_runner, const PosDir &l_pos_dir, Queue<PosDir> &l_bfs_queue,
-                    CharMap &l_char_map, Roads &l_roads, const std::vector<Vector2> &l_directions);
+                    CharMap &l_char_map, Roads &l_roads, const DynArray<Vector2> &l_directions);
 
-    void checkAdjacentRoad(std::vector<Vector2> &l_road_dirs, const PosDir &l_pos_dir,
-                           const std::vector<Vector2> &l_directions,
+    void checkAdjacentRoad(DynArray<Vector2> &l_road_dirs, const PosDir &l_pos_dir,
+                           const DynArray<Vector2> &l_directions,
                            const CharMap &l_char_map, Vector2 &l_runner);
 
     Roads loadRoads(const CharMap &l_char_map);

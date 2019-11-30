@@ -1,17 +1,17 @@
 #pragma once
 
-#include <vector>
 #include <bits/c++io.h>
 #include "stack.h"
+#include "dynarray.h"
 
 
 // --- "using" types
 
 // linked list consists of vertex/distance pair
-using AdjList = std::vector<CircSingleList<std::pair<int, int>>>;
+using AdjList = DynArray<CircSingleList<std::pair<int, int>>>;
 
 // array consists of distance/parent pair
-using PathTable = std::vector<std::pair<int, int>>;
+using PathTable = DynArray<std::pair<int, int>>;
 
 
 // Adjacency List Non-Directional Graph
@@ -22,13 +22,13 @@ private:
     // --- Member variables
 
     AdjList m_vertices;
-    std::vector<PathTable> m_min_paths;
+    DynArray<PathTable> m_min_paths;
 
 
     // --- Helper methods
 
-    int findMin(std::vector<std::pair<int, int>> &l_shortest_path,
-                 std::vector<bool> &l_visited);
+    int findMin(DynArray<std::pair<int, int>> &l_shortest_path,
+                 DynArray<bool> &l_visited);
     void initDistanceArray(size_t l_index);
     void findShortestPaths(); // dijkstra algorithm
 
