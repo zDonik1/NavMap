@@ -35,6 +35,14 @@ private:
         m_tail->next = m_tail;
     }
 
+    void copy(const CircSingleList &l_list)
+    {
+        initTail();
+        for (const auto &node_val : l_list) {
+            push_back(node_val);
+        }
+    }
+
 
 public:
 
@@ -87,20 +95,17 @@ public:
         initTail();
     }
 
-    CircSingleList(const CircSingleList &list)
+    CircSingleList(const CircSingleList &l_list)
     {
-        initTail();
-        for (const auto &node_val : list) {
-            push_back(node_val);
-        }
+        copy(l_list);
     }
 
-    CircSingleList(CircSingleList &&list)
+    CircSingleList(CircSingleList &&l_list)
     {
         initTail();
         Node *temp = m_tail;
-        m_tail = list.m_tail;
-        list.m_tail = temp;
+        m_tail = l_list.m_tail;
+        l_list.m_tail = temp;
     }
 
     ~CircSingleList()
@@ -114,6 +119,13 @@ public:
             delete preptr;
         }
         while (ptr != m_tail);
+    }
+
+    // -- Overloaded operators
+
+    void operator= (const CircSingleList &l_list)
+    {
+        copy(l_list);
     }
 
 
