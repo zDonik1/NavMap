@@ -19,7 +19,7 @@ A map file, which stores a character map, is loaded into the application and all
 
 Each line inside the character map should consist of equal number of characters. Any spaces inside the character map are ignored. There are 3 types of characters that can be used - road, endpoints, and filler. The characters that cannot be used in the character map are spaces as any of 3 character types and capital English letters as road or filler characters.
 
-Each character can also have a background and text colour. There are 16 colours that are defined inside the colour_encoding.config
+Each character can also have a background and text colour. There are 16 colours that are defined inside the colour_encoding.config:
 * Black
 * Blue
 * Sky_Blue
@@ -58,6 +58,6 @@ Doniyorbek Tokhirov < tokhirovdoniyor@gmail.com >
 
 ### Credits
 
-Nodirbek Shopaziev  
+Nodirbek Shopayziev  
 Mukambar Karimova  
 Dmitriy Liyuriy
