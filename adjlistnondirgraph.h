@@ -1,6 +1,6 @@
 #pragma once
 
-#include <bits/c++io.h>
+#include <climits>
 #include "stack.h"
 #include "dynarray.h"
 
